@@ -84,6 +84,7 @@
                     }
                 };
 
+                // the following watch was added as part of https://github.com/bentorfs/angular-bootstrap-multiselect/pull/18
                 // Update selection options if data changes
                 $scope.$watch('options', function(newVal) {
                     $scope.options = newVal;
