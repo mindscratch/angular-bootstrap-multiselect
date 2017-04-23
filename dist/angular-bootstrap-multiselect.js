@@ -13,7 +13,7 @@
         }, object)
     };
 
-    multiselect.directive('multiselect', ['$filter', '$document', '$log', function ($filter, $document, $log) {
+    multiselect.directive('multiselect', ['$filter', '$document', '$log', '$timeout', function ($filter, $document, $log, $timeout) {
         return {
             restrict: 'AE',
             scope: {
@@ -53,9 +53,13 @@
 
                 var closeHandler = function (event) {
                     if (!$element[0].contains(event.target)) {
-                        $scope.$apply(function () {
-                            $scope.open = false;
-                        });
+                        // ran into "digest already in progress" errors with the apply below,
+                        // using $timeout to resolve the issue
+                        $timeout(function() {
+                            $scope.$apply(function () {
+                                $scope.open = false;
+                            });
+                        })
                     }
                 };
 
