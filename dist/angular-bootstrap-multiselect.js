@@ -229,6 +229,7 @@
                         }
                         var displayName = $scope.getDisplay(item);
                         if (displayName) {
+                            displayName = displayName.toString();
                             var result = displayName.toLowerCase().indexOf($scope.searchFilter.toLowerCase()) > -1;
                             if (result) {
                                 counter++;
